@@ -7,114 +7,111 @@
   <title>Separatori · prova</title>
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    /* Pagina di prova: sette separatori tra due sezioni vere. Da cancellare dopo la scelta. */
+    /* Pagina di prova: l'Innarda come separatore, dalla versione più sobria alla più decorata. Da cancellare dopo la scelta. */
     .prova { padding-block: 3rem 1rem; }
     .prova__nome { font: 400 1.05rem/1 var(--display-sc); color: var(--accent); letter-spacing: .02em; margin-bottom: 2.5rem; }
     .prova__nome span { color: var(--muted); font: italic 400 1rem/1.3 var(--body); letter-spacing: 0; margin-left: .6rem; }
     .finto-fine p { color: var(--text-2); max-width: 46rem; }
-    .finto-inizio .h2 { margin-bottom: .25em; }
     .stacco { padding-block: clamp(3rem, 6vw, 4.5rem); }
-    .sep { display: flex; align-items: center; justify-content: center; gap: 1.1rem; margin-inline: auto; }
+    .sep { display: flex; align-items: center; justify-content: center; margin-inline: auto; }
+    .sep img { height: 3.6rem; width: auto; display: block; }
+    /* filetti che sfumano verso l'esterno */
+    .fl { height: 1px; width: min(16rem, 28vw); }
+    .fl--s { background: linear-gradient(to left, var(--line), transparent); }
+    .fl--d { background: linear-gradient(to right, var(--line), transparent); }
+    .gap { gap: 1.1rem; }
 
-    /* 1. Filetto doppio, come sopra e sotto il motto */
-    .sep--doppio { width: min(14rem, 60%); border-top: 3px double rgb(217 165 78 / .55); }
+    /* A. Sola */
+    .a img { height: 3rem; opacity: .8; }
 
-    /* 2. Losanga tra due filetti che sfumano */
-    .sep--losanga::before, .sep--losanga::after { content: ""; height: 1px; width: min(16rem, 30vw); }
-    .sep--losanga::before { background: linear-gradient(to left, var(--line), transparent); }
-    .sep--losanga::after { background: linear-gradient(to right, var(--line), transparent); }
-    .sep--losanga i { width: .5rem; height: .5rem; border: 1px solid var(--accent); transform: rotate(45deg); }
+    /* B. Spenta: in ferro, senza oro */
+    .b img { filter: grayscale(1) brightness(.75); opacity: .9; }
 
-    /* 3. Tre losanghe piene, il vecchio stacco di paragrafo */
-    .sep--tre { gap: 1.4rem; }
-    .sep--tre i { width: .38rem; height: .38rem; background: var(--accent); transform: rotate(45deg); opacity: .8; }
+    /* D. Filetto doppio, come il motto */
+    .dl { width: min(14rem, 26vw); border-top: 3px double rgb(217 165 78 / .45); }
 
-    /* 4. L'Innarda piccola tra due filetti */
-    .sep--innarda::before, .sep--innarda::after { content: ""; height: 1px; width: min(16rem, 30vw); }
-    .sep--innarda::before { background: linear-gradient(to left, var(--line), transparent); }
-    .sep--innarda::after { background: linear-gradient(to right, var(--line), transparent); }
-    .sep--innarda img { height: 3.6rem; width: auto; opacity: .85; }
+    /* E. Losanghe in punta ai filetti */
+    .lo { width: .42rem; height: .42rem; border: 1px solid var(--accent); transform: rotate(45deg); flex: none; }
+    .e .fl { width: min(13rem, 22vw); }
+    .e .fl--s { background: linear-gradient(to left, var(--line), rgb(58 52 49 / .4)); }
+    .e .fl--d { background: linear-gradient(to right, var(--line), rgb(58 52 49 / .4)); }
 
-    /* 5. Arco a sesto acuto: la finestra delle case della corte */
-    .sep--arco::before, .sep--arco::after { content: ""; height: 1px; width: min(16rem, 30vw); align-self: flex-end; margin-bottom: .05rem; }
-    .sep--arco::before { background: linear-gradient(to left, var(--line), transparent); }
-    .sep--arco::after { background: linear-gradient(to right, var(--line), transparent); }
-    .sep--arco svg { width: 1.6rem; height: 2.2rem; display: block; }
+    /* F. Filo di luce ai due lati */
+    .f .fl--s { background: linear-gradient(to left, rgb(217 165 78 / .75), var(--line) 45%, transparent); }
+    .f .fl--d { background: linear-gradient(to right, rgb(217 165 78 / .75), var(--line) 45%, transparent); }
 
-    /* 6. Ferro: un anello al centro, due chiodi alle estremità */
-    .sep--ferro { width: min(30rem, 80%); gap: 0; }
-    .sep--ferro b { flex: 1; height: 1px; background: var(--line); }
-    .sep--ferro i { width: .35rem; height: .35rem; background: var(--line); border-radius: 50%; }
-    .sep--ferro u { width: .9rem; height: .9rem; border: 1px solid var(--accent); border-radius: 50%; margin-inline: .8rem; text-decoration: none; }
+    /* G. Cartiglio: l'Innarda in un riquadro a spigoli vivi */
+    .g .box { border: 1px solid var(--line); background: var(--bg-2); padding: .7rem 1.1rem; }
+    .g .box img { height: 3rem; }
+    .g .fl { width: min(15rem, 26vw); }
 
-    /* 7. Filo di luce: il filetto si accende al centro, come sotto una lanterna */
-    .sep--luce { width: min(36rem, 85%); height: 1px;
-      background: linear-gradient(to right, transparent, var(--line) 25%, rgb(217 165 78 / .8) 50%, var(--line) 75%, transparent); }
+    /* H. Tre Innarde: la grande al centro, due piccole ai lati */
+    .h { gap: 1rem; }
+    .h .pic img { height: 1.9rem; opacity: .55; }
+    .h .fl { width: min(9rem, 14vw); }
   </style>
 </head>
 <body>
 <main class="wrap">
   <section class="prova" style="padding-top:4rem">
-    <h1 class="h2">Separatori di sezione</h1>
-    <p class="muted" style="max-width:46rem">Sette proposte, ognuna tra la fine di una sezione e l'inizio della successiva, con i caratteri e i colori del sito. Andrebbero tra le sezioni che non hanno già un'illustrazione a fare da stacco: prima dei personaggi, delle regole, di <em>Cosa vi chiedo</em> e della sicurezza. Nella pagina vera sono decorativi e nascosti agli screen reader.</p>
+    <h1 class="h2">L'Innarda come separatore</h1>
+    <p class="muted" style="max-width:46rem">Otto varianti, dalla più sobria (A) alla più decorata (H). La C è quella della pagina precedente.</p>
   </section>
 
-  <!-- 1 -->
   <section class="prova">
-    <p class="prova__nome">1 · Filetto doppio <span>lo stesso del motto, più corto</span></p>
+    <p class="prova__nome">A · Sola <span>il simbolo e basta, senza filetti</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--doppio" aria-hidden="true"></div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep a" aria-hidden="true"><img src="assets/img/innarda.webp" alt="" width="380" height="705"></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 
-  <!-- 2 -->
   <section class="prova">
-    <p class="prova__nome">2 · Losanga <span>due filetti che sfumano e una losanga ambra vuota</span></p>
+    <p class="prova__nome">B · Spenta <span>in ferro, senza l'oro, tra due filetti</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--losanga" aria-hidden="true"><i></i></div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep gap b" aria-hidden="true"><span class="fl fl--s"></span><img src="assets/img/innarda.webp" alt="" width="380" height="705"><span class="fl fl--d"></span></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 
-  <!-- 3 -->
   <section class="prova">
-    <p class="prova__nome">3 · Tre losanghe <span>lo stacco dei libri a stampa, senza filetto</span></p>
+    <p class="prova__nome">C · Tra due filetti <span>la proposta di prima</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--tre" aria-hidden="true"><i></i><i></i><i></i></div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep gap" aria-hidden="true"><span class="fl fl--s"></span><img src="assets/img/innarda.webp" alt="" width="380" height="705" style="opacity:.85"><span class="fl fl--d"></span></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 
-  <!-- 4 -->
   <section class="prova">
-    <p class="prova__nome">4 · Innarda <span>il simbolo della Chiesa, piccolo, tra due filetti</span></p>
+    <p class="prova__nome">D · Filetto doppio <span>i filetti del motto ai due lati</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--innarda" aria-hidden="true"><img src="assets/img/innarda.webp" alt="" width="380" height="705"></div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep gap" aria-hidden="true"><span class="dl"></span><img src="assets/img/innarda.webp" alt="" width="380" height="705"><span class="dl"></span></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 
-  <!-- 5 -->
   <section class="prova">
-    <p class="prova__nome">5 · Arco <span>un arco a sesto acuto, come le finestre della corte</span></p>
+    <p class="prova__nome">E · Losanghe <span>i filetti finiscono in una losanga ambra</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--arco" aria-hidden="true">
-      <svg viewBox="0 0 16 22" fill="none" stroke="#d9a54e" stroke-width="1"><path d="M1 22V11C1 6 5 2.5 8 .8 11 2.5 15 6 15 11v11"/><path d="M8 7v15" stroke-opacity=".5"/></svg>
-    </div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep gap e" aria-hidden="true"><i class="lo"></i><span class="fl fl--s"></span><img src="assets/img/innarda.webp" alt="" width="380" height="705"><span class="fl fl--d"></span><i class="lo"></i></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 
-  <!-- 6 -->
   <section class="prova">
-    <p class="prova__nome">6 · Ferro <span>un anello al centro e due chiodi, come la ringhiera</span></p>
+    <p class="prova__nome">F · Luce <span>i filetti si scaldano vicino al simbolo</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--ferro" aria-hidden="true"><i></i><b></b><u></u><b></b><i></i></div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep gap f" aria-hidden="true"><span class="fl fl--s"></span><img src="assets/img/innarda.webp" alt="" width="380" height="705"><span class="fl fl--d"></span></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 
-  <!-- 7 -->
+  <section class="prova">
+    <p class="prova__nome">G · Cartiglio <span>il simbolo in un riquadro, come un timbro</span></p>
+    <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
+    <div class="stacco"><div class="sep g" aria-hidden="true"><span class="fl fl--s"></span><span class="box"><img src="assets/img/innarda.webp" alt="" width="380" height="705"></span><span class="fl fl--d"></span></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
+  </section>
+
   <section class="prova" style="padding-bottom:6rem">
-    <p class="prova__nome">7 · Filo di luce <span>il filetto si scalda al centro, come sotto una lanterna</span></p>
+    <p class="prova__nome">H · Tre Innarde <span>la grande al centro, due piccole e spente ai lati</span></p>
     <div class="finto-fine"><p>Personaggi che stanno nel gruppo. I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p></div>
-    <div class="stacco"><div class="sep sep--luce" aria-hidden="true"></div></div>
-    <div class="finto-inizio"><h2 class="h2">Contenuti e sicurezza</h2></div>
+    <div class="stacco"><div class="sep h" aria-hidden="true"><span class="fl fl--s"></span><span class="pic"><img src="assets/img/innarda.webp" alt="" width="380" height="705"></span><img src="assets/img/innarda.webp" alt="" width="380" height="705"><span class="pic"><img src="assets/img/innarda.webp" alt="" width="380" height="705"></span><span class="fl fl--d"></span></div></div>
+    <h2 class="h2">Contenuti e sicurezza</h2>
   </section>
 </main>
 </body>
