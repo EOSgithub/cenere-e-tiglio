@@ -2,8 +2,8 @@
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Comparse
-  const reveals = document.querySelectorAll('.reveal');
+  // Le illustrazioni escono dal buio la prima volta che entrano nello schermo; il testo resta fermo
+  const reveals = document.querySelectorAll('.lantern');
   if (reduce || !('IntersectionObserver' in window)) {
     reveals.forEach(el => el.classList.add('is-visible'));
   } else {
@@ -24,15 +24,17 @@
     nav.classList.add('is-on');
   }
 
-  // Filtro: al telefono nasconde le carte, al computer spegne le figure escluse
+  // Filtro: le due definizioni nella frase accendono un gruppo; toccata di nuovo, la stessa lo spegne.
+  // Al telefono nasconde le carte, al computer spegne le figure escluse.
   const wrap = document.querySelector('.rank-wrap');
-  const buttons = document.querySelectorAll('.filter__btn');
+  const buttons = document.querySelectorAll('.inline-filter');
   const cards = document.querySelectorAll('.pc');
   const status = document.getElementById('filtro-stato');
   let filtro = 'tutti';
   buttons.forEach(btn => btn.addEventListener('click', () => {
-    filtro = btn.dataset.filtro;
-    buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    const on = btn.getAttribute('aria-pressed') !== 'true';
+    filtro = on ? btn.dataset.filtro : 'tutti';
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn && on)));
     if (wrap) wrap.dataset.filtro = filtro;
     let n = 0;
     cards.forEach(card => {
