@@ -245,13 +245,14 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
   overflow: hidden; min-height: 26rem;
 }
 .lore__symbol {
-  position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%);
-  width: 9.5rem; height: auto; opacity: .9;
+  position: absolute; top: 2.5rem; left: 50%; transform: translateX(-50%);
+  width: 13.5rem; height: auto; opacity: .9;
 }
-.lore__cell--ch h3, .lore__cell--ch p { position: relative; }
+/* La sfumatura sta sopra l'Innarda e sotto il testo: il simbolo sparisce dietro le parole */
+.lore__cell--ch h3, .lore__cell--ch p { position: relative; z-index: 2; }
 .lore__cell--ch::before {
-  content: ""; position: absolute; inset: auto 0 0; height: 70%;
-  background: linear-gradient(to top, var(--bg) 35%, transparent);
+  content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: 65%;
+  background: linear-gradient(to top, rgb(18 17 17 / .92) 30%, transparent);
 }
 @media (max-width: 960px) {
   .lore__grid {
