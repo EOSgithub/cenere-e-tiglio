@@ -106,7 +106,7 @@
         <p>I bastoncini consacrati dalla Chiesa emanano un odore che gli uomini quasi non sentono e che le bestie della Piaga trovano insopportabile.</p>
       </article>
       <article class="lore__cell lore__cell--ch reveal">
-        <span class="lore__symbol" role="img" aria-label="Il simbolo della Chiesa Radiosa"></span>
+        <img class="lore__symbol" src="assets/img/innarda.webp" alt="L'Innarda, il simbolo della Chiesa Radiosa: ferro annerito e oro, un anello sopra una croce con quattro bracci uncinati." width="380" height="705" loading="lazy" decoding="async">
         <h3>La Chiesa Radiosa</h3>
         <p>Governa la città, consacra l'incenso, detta la legge. Chi comincia a cambiare va consegnato alla Milizia, che lo tiene in cella finché non si vede cosa ne esce.</p>
       </article>
@@ -126,7 +126,7 @@
       <div class="cast__head reveal">
         <h2 id="personaggi-titolo" class="h2">I personaggi</h2>
         <p>Quattordici membri della pattuglia, uno per classe. Sceglietene uno e scrivetemi su WhatsApp <strong>una riga sul perché vi ha incuriosito</strong>. In caso di doppioni vale chi scrive prima.</p>
-        <p class="muted">Alcuni sono più immediati da giocare, altri hanno più meccaniche da tenere a mente: usate il filtro.</p>
+        <p class="muted">Alcuni sono più immediati da giocare, altri hanno più meccaniche da tenere a mente: usate il filtro. Toccate una carta per aprire la scheda.</p>
       </div>
 
       <div class="filter reveal" role="group" aria-label="Filtra i personaggi">
@@ -141,7 +141,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/oswin.webp" alt="Oswin Tarrant" width="520" height="830" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Artefice, orco</p>
-            <h3 class="pc__name">Oswin Tarrant</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="oswin" aria-haspopup="dialog">Oswin Tarrant</button></h3>
             <p>Meccanico cresciuto nelle officine delle miniere. Rimette in funzione ciò che si rompe</p>
           </div>
         </li>
@@ -149,7 +149,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/ghira.webp" alt="Ghira Dolmen" width="520" height="933" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Barbaro, orca</p>
-            <h3 class="pc__name">Ghira Dolmen</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="ghira" aria-haspopup="dialog">Ghira Dolmen</button></h3>
             <p>Trovata un mese fa davanti al cordone, senza memoria e senza nome</p>
           </div>
         </li>
@@ -157,7 +157,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/lucan.webp" alt="Lucan Fenwick" width="520" height="955" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Bardo, umano</p>
-            <h3 class="pc__name">Lucan Fenwick</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="lucan" aria-haspopup="dialog">Lucan Fenwick</button></h3>
             <p>Ex voce del coro della Cattedrale, scrivano, uno che si fa raccontare le cose</p>
           </div>
         </li>
@@ -165,7 +165,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/iveta.webp" alt="Sorella Iveta Lorne" width="514" height="1080" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Chierico, elfa</p>
-            <h3 class="pc__name">Sorella Iveta Lorne</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="iveta" aria-haspopup="dialog">Sorella Iveta Lorne</button></h3>
             <p>Guaritrice di pattuglia, con la mantellina bianca. Crede nella Chiesa Radiosa</p>
           </div>
         </li>
@@ -173,7 +173,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/sorrel.webp" alt="Sorrel Ashby" width="474" height="1082" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Druido, elfa</p>
-            <h3 class="pc__name">Sorrel Ashby</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="sorrel" aria-haspopup="dialog">Sorrel Ashby</button></h3>
             <p>Erborista del bazar, prepara i decotti che tengono in piedi la squadra</p>
           </div>
         </li>
@@ -181,7 +181,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/bran.webp" alt="Brannoch “Bran” Ostler" width="520" height="913" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Guerriero, umano</p>
-            <h3 class="pc__name">Brannoch “Bran” Ostler</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="bran" aria-haspopup="dialog">Brannoch “Bran” Ostler</button></h3>
             <p>Il più anziano di servizio, quello che firmerà il rapporto a fine missione</p>
           </div>
         </li>
@@ -189,7 +189,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/halvard.webp" alt="Halvard Pryce" width="520" height="1027" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Jaeger, umano</p>
-            <h3 class="pc__name">Halvard Pryce</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="halvard" aria-haspopup="dialog">Halvard Pryce</button></h3>
             <p>Un Cacciatore novizio, stocco in una mano, pistola nell'altra</p>
           </div>
         </li>
@@ -197,7 +197,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/kasimir.webp" alt="Kasimir Dray" width="520" height="1018" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Ladro, umano</p>
-            <h3 class="pc__name">Kasimir Dray</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="kasimir" aria-haspopup="dialog">Kasimir Dray</button></h3>
             <p>Nato nel Distretto Rubino, uscito tre giorni prima che lo segregassero</p>
           </div>
         </li>
@@ -205,7 +205,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/emeric.webp" alt="Dottor Emeric Hallow" width="520" height="799" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Mago, nano</p>
-            <h3 class="pc__name">Dottor Emeric Hallow</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="emeric" aria-haspopup="dialog">Dottor Emeric Hallow</button></h3>
             <p>Medico di quartiere e anatomista. Prende appunti su tutto</p>
           </div>
         </li>
@@ -213,7 +213,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/jory.webp" alt="Jory Tamm" width="520" height="775" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Monaco, umano</p>
-            <h3 class="pc__name">Jory Tamm</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="jory" aria-haspopup="dialog">Jory Tamm</button></h3>
             <p>Ragazzo di strada cresciuto in una palestra di lottatori. Il più giovane, il più veloce</p>
           </div>
         </li>
@@ -221,7 +221,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/aldith.webp" alt="Aldith Wren" width="506" height="1058" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Paladino, umana</p>
-            <h3 class="pc__name">Aldith Wren</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="aldith" aria-haspopup="dialog">Aldith Wren</button></h3>
             <p>Addestrata nella House of Blood. Un baluardo di rettitudine</p>
           </div>
         </li>
@@ -229,7 +229,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/mina.webp" alt="Wilhelmina “Mina” Krauss" width="516" height="1101" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Ranger, umana</p>
-            <h3 class="pc__name">Wilhelmina “Mina” Krauss</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="mina" aria-haspopup="dialog">Wilhelmina “Mina” Krauss</button></h3>
             <p>Tiratrice scelta. Riesce a rintracciare le bestie della Piaga prima di chiunque altro</p>
           </div>
         </li>
@@ -237,7 +237,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/nell.webp" alt="Nell Quist" width="444" height="1018" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Stregone, umana</p>
-            <h3 class="pc__name">Nell Quist</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="nell" aria-haspopup="dialog">Nell Quist</button></h3>
             <p>Apprendista orologiaia. Sa aggiustare qualsiasi cosa</p>
           </div>
         </li>
@@ -245,7 +245,7 @@
           <div class="pc__art"><img src="assets/img/pregenerati/isolde.webp" alt="Isolde Sedgwick" width="520" height="1044" loading="lazy" decoding="async"></div>
           <div class="pc__body">
             <p class="pc__class">Warlock, elfa</p>
-            <h3 class="pc__name">Isolde Sedgwick</h3>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="isolde" aria-haspopup="dialog">Isolde Sedgwick</button></h3>
             <p>Vedova. Nelle notti peggiori è quella che non ha mai paura</p>
           </div>
         </li>
@@ -330,6 +330,19 @@
   <p><em>Cenere e Tiglio</em>, one-shot per <em>Rise of the Wretched</em>. Ambientazione: <em>Steinhardt's Guide to the Eldritch Hunt</em>.</p>
 </footer>
 
+<dialog class="sk" id="scheda" aria-labelledby="scheda-titolo">
+  <div class="sk__frame">
+    <div class="sk__art"><img src="" alt="" width="520" height="1000"></div>
+    <article class="sk__body" tabindex="-1"></article>
+    <nav class="sk__nav" aria-label="Scheda">
+      <button type="button" class="sk__btn" data-sk="prev" aria-label="Personaggio precedente">←</button>
+      <button type="button" class="sk__btn" data-sk="next" aria-label="Personaggio successivo">→</button>
+      <button type="button" class="sk__btn sk__close" data-sk="close" aria-label="Chiudi la scheda">✕</button>
+    </nav>
+  </div>
+</dialog>
+
+<script src="assets/schede.js" defer></script>
 <script src="assets/main.js" defer></script>
 </body>
 </html>
