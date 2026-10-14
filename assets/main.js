@@ -9,11 +9,76 @@
   const showCaption = fig => { if (caption) caption.innerHTML = fig.querySelector('.fig__cap').innerHTML; };
   const resetCaption = () => { if (caption) caption.innerHTML = restCaption; };
   figs.forEach(f => {
-    f.addEventListener('mouseenter', () => showCaption(f));
     f.addEventListener('focus', () => showCaption(f));
-    f.addEventListener('mouseleave', resetCaption);
     f.addEventListener('blur', resetCaption);
   });
+
+  // Al computer le figure si sovrappongono: il mouse deve prendere solo i pixel visibili.
+  // Per ogni ritratto si tiene una maschera ridotta del canale alfa, letta una volta sola.
+  const desk = window.matchMedia('(min-width: 761px)');
+  const masks = new Map();
+  const SCALE = 4;
+  function buildMask(fig) {
+    const img = fig.querySelector('img');
+    const read = () => {
+      const w = Math.ceil(img.naturalWidth / SCALE), h = Math.ceil(img.naturalHeight / SCALE);
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0, w, h);
+      const data = ctx.getImageData(0, 0, w, h).data;
+      const alpha = new Uint8Array(w * h);
+      for (let i = 0; i < alpha.length; i++) alpha[i] = data[i * 4 + 3];
+      masks.set(fig, { w, h, alpha });
+    };
+    if (img.complete && img.naturalWidth) read();
+    else img.addEventListener('load', read, { once: true });
+  }
+  if (wrap) {
+    figs.forEach(f => f.querySelector('img').loading = 'eager');
+    figs.forEach(buildMask);
+  }
+
+  // Ordine di pittura, dal più vicino: la fila davanti, poi quella dietro;
+  // dentro una fila, l'ultima nel DOM sta sopra. La figura accesa non scavalca le altre.
+  const front = [...document.querySelectorAll('.rank--front .fig')].reverse();
+  const rear = [...document.querySelectorAll('.rank--rear .fig')].reverse();
+  let lit = null;
+
+  function figAt(x, y) {
+    for (const f of [...front, ...rear]) {
+      const m = masks.get(f);
+      if (!m) continue;
+      const r = f.querySelector('img').getBoundingClientRect();
+      if (x < r.left || x >= r.right || y < r.top || y >= r.bottom) continue;
+      const mx = Math.floor((x - r.left) / r.width * m.w);
+      const my = Math.floor((y - r.top) / r.height * m.h);
+      if (m.alpha[my * m.w + mx] > 60) return f;
+    }
+    return null;
+  }
+
+  function light(f) {
+    if (f === lit) return;
+    if (lit) lit.classList.remove('lit');
+    lit = f;
+    if (f) { f.classList.add('lit'); showCaption(f); } else resetCaption();
+    wrap.classList.toggle('is-lit', !!f);
+  }
+
+  if (wrap) {
+    // Il controllo costa poco (quattordici rettangoli e un byte per figura): si fa a ogni movimento
+    wrap.addEventListener('pointermove', e => {
+      if (!desk.matches || e.pointerType === 'touch') return;
+      light(figAt(e.clientX, e.clientY));
+    });
+    wrap.addEventListener('pointerleave', () => light(null));
+    wrap.addEventListener('click', e => {
+      if (!desk.matches || e.target.closest('.fig')) return;  // al telefono, e con la tastiera, decidono i pulsanti
+      const f = figAt(e.clientX, e.clientY);
+      if (f) f.click();
+    });
+  }
 
   // Filtro: le due definizioni nella frase accendono un gruppo; toccata di nuovo, la stessa le spegne
   const toggles = document.querySelectorAll('.inline-filter');
