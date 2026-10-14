@@ -64,7 +64,7 @@ def split_label(label):
 
 
 def vitals(line):
-    out = []
+    heads, cells = [], []
     for part in line.split(" · "):
         m = re.match(r"\*\*(.+?)\*\*\s*(.*)", part.strip())
         key, val = m.group(1), m.group(2)
@@ -72,39 +72,34 @@ def vitals(line):
         if " (" in val:
             main, note = val.split(" (", 1)
             note = note.rstrip(")")
-        out.append(f'<div><dt>{md(key)}</dt><dd><span class="sk__v">{md(main)}</span>'
-                   + (f'<span class="sk__vnote">{md(note)}</span>' if note else "") + "</dd></div>")
-    return '<dl class="sk__vitals">' + "".join(out) + "</dl>"
+        heads.append(f"<th>{md(key)}</th>")
+        cells.append(f"<td>{md(main)}" + (f"<small>{md(note)}</small>" if note else "") + "</td>")
+    return ('<table class="sk__vitals"><thead><tr>' + "".join(heads) + "</tr></thead><tbody><tr>"
+            + "".join(cells) + "</tr></tbody></table>")
 
 
 def saves(text):
-    chips = []
+    parts = []
     for part in text.split(" · "):
         part = part.strip()
-        follia = part.startswith("**")
-        part = part.strip("*")
-        key, val = part.split(" ", 1)
-        note = ""
-        if " (" in val:
-            val, note = val.split(" (", 1)
-            note = note.rstrip(")")
-        cls = "sk__save sk__save--follia" if follia else "sk__save"
-        chips.append(f'<li class="{cls}"><span>{md(key)}</span><strong>{md(val)}</strong>'
-                     + (f'<em>{md(note)}</em>' if note else "") + "</li>")
-    return ('<section class="sk__block"><h3>Tiri salvezza</h3><ul class="sk__saves">'
-            + "".join(chips) + "</ul></section>")
+        if part.startswith("**"):
+            parts.append(f'<span class="sk__follia">{md(part.strip("*"))}</span>')
+        else:
+            parts.append(md(part))
+    return '<p class="sk__line"><b>Tiri salvezza.</b> ' + ", ".join(parts) + "</p>"
 
 
 def abilities(rows):
     heads = [c.strip() for c in rows[0].strip("|").split("|")]
     vals = [c.strip() for c in rows[2].strip("|").split("|")]
-    cells = []
-    for h, v in zip(heads, vals):
+    mods, scores = [], []
+    for v in vals:
         score, mod = re.match(r"(\d+)\s*\(([-+]\d+)\)", v).groups()
-        mod = mod.replace("-", "\u2212")
-        cells.append(f'<div class="sk__ab"><span class="sk__abk">{h}</span>'
-                     f'<span class="sk__abmod">{mod}</span><span class="sk__abs">{score}</span></div>')
-    return '<div class="sk__abilities">' + "".join(cells) + "</div>"
+        mods.append(f"<td>{mod.replace('-', chr(0x2212))}</td>")
+        scores.append(f"<td>{score}</td>")
+    return ('<table class="sk__stats"><thead><tr>' + "".join(f"<th>{h}</th>" for h in heads)
+            + '</tr></thead><tbody><tr class="sk__mods">' + "".join(mods)
+            + '</tr><tr class="sk__scores">' + "".join(scores) + "</tr></tbody></table>")
 
 
 def parse(block):
@@ -187,7 +182,7 @@ def parse(block):
         + "".join(f'<p class="sk__intro">{md(p)}</p>' for p in intro)
         + abilities(table)
         + '<div class="sk__rules">' + "".join(parts) + "</div>"
-        + (f'<aside class="sk__bond"><h3>Domanda di legame</h3><p>{md(bond)}</p></aside>' if bond else "")
+        + (f'<p class="sk__bond"><b>Domanda di legame.</b> <em>{md(bond)}</em></p>' if bond else "")
         + '<p class="sk__secret">Il segreto arriva in busta chiusa, solo a chi sceglie questo personaggio.</p>'
     )
     return slug, html_out
