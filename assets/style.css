@@ -67,7 +67,7 @@ p:last-child { margin-bottom: 0; }
 }
 h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
 /* A capo: titoli bilanciati, paragrafi senza una parola sola sull'ultima riga */
-h1, h2, h3, .sheet__intro, .premise__dread, .motto__text, .orders__title { text-wrap: balance; }
+h1, h2, h3, .sheet__intro, .premise__dread, .motto__text { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -168,7 +168,6 @@ p, li, dd { text-wrap: pretty; }
   border: 1px solid var(--line);
   padding: clamp(1.5rem, 3vw, 2.25rem);
 }
-.orders__title { font: 400 2rem/1 var(--display); margin: 0 0 1.25rem; }
 .orders__list { margin: 0; display: grid; gap: .85rem; }
 .orders__list div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; align-items: baseline; }
 .orders__list dt { font-family: var(--display-sc); letter-spacing: .02em; color: var(--accent); font-size: 1.08rem; }
@@ -420,24 +419,13 @@ p, li, dd { text-wrap: pretty; }
 .rule p { color: var(--text-2); }
 @media (max-width: 860px) { .rules__cols { column-count: 1; max-width: 40rem; } }
 
-/* Cosa vi chiedo, cosa portare */
-.asks {
-  display: grid; gap: clamp(2.5rem, 6vw, 6rem);
-  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
-  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3.5rem, 7vw, 6rem);
+/* Cosa vi chiedo: a schermo largo su due colonne col filetto, come le regole */
+.asks { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3.5rem, 7vw, 6rem); }
+.asks__list { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
+.asks__list li { color: var(--text-2); margin-bottom: 1.25rem; break-inside: avoid; }
+@media (min-width: 961px) {
+  .asks__list { max-width: none; column-count: 2; column-gap: clamp(2.5rem, 5vw, 4.5rem); column-rule: 1px solid var(--line); }
 }
-.asks__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
-.asks__list li { color: var(--text-2); }
-/* Cosa portare: lo stesso foglio d'ordini di "In breve", che chiude ciò che "In breve" apre */
-.asks__col--kit {
-  align-self: start;
-  background: var(--bg-2); border: 1px solid var(--line);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-}
-.asks__col--kit .h2 { font-size: 2rem; line-height: 1; margin-bottom: 1.25rem; }
-.kit { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
-.kit li { color: var(--text-2); }
-@media (max-width: 860px) { .asks { grid-template-columns: 1fr; } }
 
 /* Contenuti e sicurezza: sullo stesso filo sinistro del resto */
 .safety { padding-block: 0 clamp(4rem, 8vw, 6.5rem); }
