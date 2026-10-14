@@ -1,11 +1,56 @@
-// Cenere e Tiglio: la pattuglia schierata (filtro e didascalia) e la scheda del personaggio.
+// Cenere e Tiglio · comparse, barra di navigazione, filtro, pattuglia schierata e scheda del personaggio.
 (() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Comparse
+  const reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // La barra compare quando l'apertura esce dallo schermo
+  const nav = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  if (nav && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => nav.classList.toggle('is-on', !e.isIntersecting), { threshold: 0.08 }).observe(hero);
+  } else if (nav) {
+    nav.classList.add('is-on');
+  }
+
+  // Filtro: al telefono nasconde le carte, al computer spegne le figure escluse
   const wrap = document.querySelector('.rank-wrap');
+  const buttons = document.querySelectorAll('.filter__btn');
+  const cards = document.querySelectorAll('.pc');
+  const status = document.getElementById('filtro-stato');
+  let filtro = 'tutti';
+  buttons.forEach(btn => btn.addEventListener('click', () => {
+    filtro = btn.dataset.filtro;
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    if (wrap) wrap.dataset.filtro = filtro;
+    let n = 0;
+    cards.forEach(card => {
+      const show = filtro === 'tutti' || card.dataset.gruppo === filtro;
+      card.hidden = !show;
+      card.classList.remove('is-entering');
+      if (show) {
+        n++;
+        if (!reduce) { void card.offsetWidth; card.classList.add('is-entering'); }
+      }
+    });
+    if (status) status.textContent = `${n} personaggi`;
+  }));
+
+  // La pattuglia schierata (solo al computer)
   const figs = [...document.querySelectorAll('.fig')];
   const caption = document.querySelector('.muster__caption');
   const restCaption = caption ? caption.innerHTML : '';
-
-  // Didascalia condivisa: segue il personaggio indicato o selezionato con la tastiera
   const showCaption = fig => { if (caption) caption.innerHTML = fig.querySelector('.fig__cap').innerHTML; };
   const resetCaption = () => { if (caption) caption.innerHTML = restCaption; };
   figs.forEach(f => {
@@ -13,7 +58,7 @@
     f.addEventListener('blur', resetCaption);
   });
 
-  // Al computer le figure si sovrappongono: il mouse deve prendere solo i pixel visibili.
+  // Le figure si sovrappongono: il mouse deve prendere solo i pixel visibili.
   // Per ogni ritratto si tiene una maschera ridotta del canale alfa, letta una volta sola.
   const desk = window.matchMedia('(min-width: 761px)');
   const masks = new Map();
@@ -34,13 +79,11 @@
     if (img.complete && img.naturalWidth) read();
     else img.addEventListener('load', read, { once: true });
   }
-  if (wrap) {
-    figs.forEach(f => f.querySelector('img').loading = 'eager');
-    figs.forEach(buildMask);
+  if (wrap && desk.matches) {
+    figs.forEach(f => { f.querySelector('img').loading = 'eager'; buildMask(f); });
   }
 
-  // Ordine di pittura, dal più vicino: la fila davanti, poi quella dietro;
-  // dentro una fila, l'ultima nel DOM sta sopra. La figura accesa non scavalca le altre.
+  // Ordine di pittura, dal più vicino: la fila davanti, poi quella dietro; dentro una fila l'ultima sta sopra
   const front = [...document.querySelectorAll('.rank--front .fig')].reverse();
   const rear = [...document.querySelectorAll('.rank--rear .fig')].reverse();
   let lit = null;
@@ -67,26 +110,21 @@
   }
 
   if (wrap) {
-    // Il controllo costa poco (quattordici rettangoli e un byte per figura): si fa a ogni movimento
+    // Se la finestra si allarga dopo il caricamento, le maschere si leggono allora
+    desk.addEventListener('change', () => {
+      if (desk.matches) figs.forEach(f => { if (!masks.has(f)) { f.querySelector('img').loading = 'eager'; buildMask(f); } });
+    });
     wrap.addEventListener('pointermove', e => {
       if (!desk.matches || e.pointerType === 'touch') return;
       light(figAt(e.clientX, e.clientY));
     });
     wrap.addEventListener('pointerleave', () => light(null));
     wrap.addEventListener('click', e => {
-      if (!desk.matches || e.target.closest('.fig')) return;  // al telefono, e con la tastiera, decidono i pulsanti
+      if (!desk.matches || e.target.closest('.fig')) return;  // con la tastiera decidono i pulsanti
       const f = figAt(e.clientX, e.clientY);
       if (f) f.click();
     });
   }
-
-  // Filtro: le due definizioni nella frase accendono un gruppo; toccata di nuovo, la stessa le spegne
-  const toggles = document.querySelectorAll('.inline-filter');
-  toggles.forEach(t => t.addEventListener('click', () => {
-    const on = t.getAttribute('aria-pressed') !== 'true';
-    toggles.forEach(o => o.setAttribute('aria-pressed', String(o === t && on)));
-    if (wrap) wrap.dataset.filtro = on ? t.dataset.filtro : 'tutti';
-  }));
 
   // Scheda del personaggio
   const dlg = document.getElementById('scheda');
@@ -94,22 +132,25 @@
   const body = dlg.querySelector('.sk__body');
   const art = dlg.querySelector('.sk__art img');
   const frame = dlg.querySelector('.sk__frame');
+  const openers = [...document.querySelectorAll('.pc__open, .fig')];
   let current = null;
   let opener = null;
 
-  // Con il filtro acceso, precedente e successivo restano dentro il gruppo
-  const order = () => {
-    const f = wrap ? wrap.dataset.filtro : 'tutti';
-    return figs.filter(x => f === 'tutti' || x.dataset.gruppo === f).map(x => x.dataset.scheda);
+  // Ordine del primer (quello delle carte); con il filtro acceso, precedente e successivo restano nel gruppo
+  const order = () => [...cards]
+    .filter(c => filtro === 'tutti' || c.dataset.gruppo === filtro)
+    .map(c => c.querySelector('.pc__open').dataset.scheda);
+  const nameOf = slug => {
+    const b = document.querySelector(`.pc__open[data-scheda="${slug}"]`);
+    return b ? b.textContent.trim() : '';
   };
 
   function show(slug) {
-    const fig = figs.find(x => x.dataset.scheda === slug);
-    if (!fig || !window.SCHEDE[slug]) return;
+    if (!window.SCHEDE[slug]) return;
     current = slug;
     body.innerHTML = window.SCHEDE[slug];
     art.src = `assets/img/pregenerati/${slug}.webp`;
-    art.alt = fig.querySelector('.fig__name').textContent;
+    art.alt = nameOf(slug);
     body.scrollTop = 0; frame.scrollTop = 0;
     history.replaceState(null, '', `#scheda-${slug}`);
   }
@@ -130,7 +171,7 @@
     show(list[(i + dir + list.length) % list.length]);
   }
 
-  figs.forEach(f => f.addEventListener('click', () => open(f.dataset.scheda, f)));
+  openers.forEach(b => b.addEventListener('click', () => open(b.dataset.scheda, b)));
 
   dlg.addEventListener('click', e => {
     const a = e.target.closest('[data-sk]');
@@ -148,7 +189,9 @@
   dlg.addEventListener('close', () => {
     document.documentElement.classList.remove('has-modal');
     history.replaceState(null, '', location.pathname + location.search);
-    const back = opener || figs.find(x => x.dataset.scheda === current);
+    // Torna al pulsante che l'ha aperta se è visibile, altrimenti a quello del personaggio nella vista attuale
+    const visible = el => el && el.getClientRects().length > 0;
+    const back = visible(opener) ? opener : openers.find(b => b.dataset.scheda === current && visible(b));
     if (back) back.focus({ preventScroll: true });
   });
 

@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cenere e Tiglio, primer per i giocatori</title>
+  <title>Cenere e Tiglio · Player Primer</title>
   <meta name="description" content="Una one-shot horror vittoriana a Luyarnha, la città in quarantena. Serata di prova per la campagna Rise of the Wretched.">
-  <meta name="theme-color" content="#121111">
+  <meta name="theme-color" content="#0c0e12">
   <meta name="color-scheme" content="dark">
 
   <!-- Anteprima per WhatsApp: l'immagine deve avere un indirizzo assoluto -->
@@ -21,40 +21,46 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/im-fell-english-latin-400-normal.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/alegreya-latin-400-normal.woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<header class="plate" id="inizio">
-  <picture class="plate__img">
+<nav class="nav" aria-label="Sezioni">
+  <a class="nav__brand" href="#inizio">Cenere e Tiglio</a>
+  <ul class="nav__links">
+    <li><a href="#premessa">Premessa</a></li>
+    <li><a href="#recluta">Cosa sapete</a></li>
+    <li><a href="#personaggi">Personaggi</a></li>
+    <li><a href="#regole">Regole</a></li>
+    <li><a href="#sicurezza">Sicurezza</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="inizio">
+  <picture class="hero__bg">
     <source type="image/webp" srcset="assets/img/corte-del-tiglio-800.webp 800w, assets/img/corte-del-tiglio.webp 1376w" sizes="100vw">
     <img src="assets/img/corte-del-tiglio.webp" alt="La Corte del Tiglio al calare della notte: ballatoi in ferro battuto attorno a un grande tiglio spoglio e a un pozzo, due lanterne accese." width="1376" height="768" fetchpriority="high">
   </picture>
-  <div class="plate__caption">
-    <h1 class="masthead">Cenere e Tiglio</h1>
-    <p class="masthead__sub">Benvenuti, reclute.</p>
-    <nav class="contents" aria-label="Sezioni">
-      <a href="#premessa">La premessa</a>
-      <a href="#recluta">Quello che ogni recluta sa</a>
-      <a href="#personaggi">I personaggi</a>
-      <a href="#regole">Regole</a>
-      <a href="#sicurezza">Contenuti e sicurezza</a>
-    </nav>
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__fog" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="kicker">One-shot a Luyarnha</p>
+    <h1 class="hero__title">Cenere e Tiglio</h1>
+    <p class="hero__sub">Benvenuti, reclute.</p>
   </div>
 </header>
 
 <main>
 
-  <section class="folio" aria-label="Presentazione">
-    <div class="folio__body">
-      <p class="opening"><em>Cenere e Tiglio</em> è una one-shot autoconclusiva ambientata a <strong>Luyarnha</strong>, la città in quarantena di <em>Steinhardt's Guide to the Eldritch Hunt</em>. Si gioca in una sola sessione e non richiede di conoscere né l'ambientazione né il manuale.</p>
+  <section class="intro wrap" aria-label="Presentazione">
+    <div class="intro__text reveal">
+      <p class="lede"><em>Cenere e Tiglio</em> è una one-shot autoconclusiva ambientata a <strong>Luyarnha</strong>, la città in quarantena di <em>Steinhardt's Guide to the Eldritch Hunt</em>. Si gioca in una sola sessione e non richiede di conoscere né l'ambientazione né il manuale.</p>
       <p>È anche una <strong>serata di prova</strong>. Sto preparando la campagna <em>Rise of the Wretched</em> e questa one-shot serve a voi per capire se il tono e le regole vi piacciono, e a me per capire come organizzare il tavolo.</p>
     </div>
-  </section>
 
-  <section class="folio" aria-labelledby="in-breve">
-    <h2 id="in-breve" class="sidehead">In breve</h2>
-    <div class="folio__body">
-      <dl class="leaders">
+    <aside class="orders reveal" aria-labelledby="in-breve">
+      <h2 id="in-breve" class="orders__title">In breve</h2>
+      <dl class="orders__list">
         <div><dt>Quando</dt><dd><em>da definire</em></dd></div>
         <div><dt>Dove</dt><dd><em>da definire</em></dd></div>
         <div><dt>Durata</dt><dd>5 ore</dd></div>
@@ -64,44 +70,74 @@
         <div><dt>Tono</dt><dd>horror vittoriano, cupo e teso. Pensate a <em>Bloodborne</em></dd></div>
         <div><dt>Equilibrio</dt><dd>interpretazione e indagine con due o tre scontri</dd></div>
       </dl>
+    </aside>
+  </section>
+
+  <section class="premise" id="premessa" aria-labelledby="premessa-titolo">
+    <img class="premise__bg" src="assets/img/vicolo-del-coprifuoco.webp" alt="" width="1376" height="768" loading="lazy" decoding="async">
+    <div class="premise__inner wrap reveal">
+      <h2 id="premessa-titolo" class="h2">La premessa</h2>
+      <p class="premise__lead">Siete una pattuglia di reclute della Milizia. Stanotte avete un incarico semplice: scortare una cassa di incenso consacrato fino alla <strong>Corte del Tiglio</strong>, un vecchio complesso di ringhiera sul ciglio del Distretto Rubino, a ridosso del cordone che lo sigilla, e presidiarlo fino all'alba.</p>
+      <p class="premise__dread">Nelle ultime due notti, in quella corte, due famiglie sono state sbranate in casa propria, pur avendo entrambe acceso l'incenso per tenere alla larga le bestie della Piaga.</p>
     </div>
   </section>
 
-  <figure class="engraving">
-    <img src="assets/img/vicolo-del-coprifuoco.webp" alt="Un vicolo di Luyarnha di notte: case gotiche strette, imposte chiuse, un solo lampione acceso e la nebbia in fondo alla strada." width="1376" height="768" loading="lazy" decoding="async">
-  </figure>
-
-  <section class="folio" id="premessa" aria-labelledby="premessa-titolo">
-    <h2 id="premessa-titolo" class="sidehead">La premessa</h2>
-    <div class="folio__body">
-      <p>Siete una pattuglia di reclute della Milizia. Stanotte avete un incarico semplice: scortare una cassa di incenso consacrato fino alla <strong>Corte del Tiglio</strong>, un vecchio complesso di ringhiera sul ciglio del Distretto Rubino, a ridosso del cordone che lo sigilla, e presidiarlo fino all'alba.</p>
-      <p class="dread">Nelle ultime due notti, in quella corte, due famiglie sono state sbranate in casa propria, pur avendo entrambe acceso l'incenso per tenere alla larga le bestie della Piaga.</p>
+  <section class="lore wrap" id="recluta" aria-labelledby="recluta-titolo">
+    <h2 id="recluta-titolo" class="h2 reveal">Quello che ogni recluta sa</h2>
+    <div class="lore__grid">
+      <article class="lore__cell lore__cell--lu reveal">
+        <h3>Luyarnha</h3>
+        <p>Una città antica e devota, chiusa dentro le sue mura da una quarantena.</p>
+      </article>
+      <article class="lore__cell lore__cell--pi reveal">
+        <h3>La Piaga</h3>
+        <p>Una maledizione che trasforma le persone in bestie. Di notte le strade sono loro. Nessuno sa come si prende: c'è chi dice il morso, chi l'aria, chi la luna. Non tutti finiscono bestie: alcuni cambiano corpo e restano sé stessi.</p>
+      </article>
+      <article class="lore__cell lore__cell--mi reveal">
+        <img class="lore__ogden" src="assets/img/sergente-ogden.webp" alt="Il sergente Alaric Ogden: barba brizzolata, cappotto blu della Milizia, spada in una mano e pistola nell'altra." width="520" height="896" loading="lazy" decoding="async">
+        <div class="lore__mi-text">
+          <h3>La Milizia</h3>
+          <p>Voi. Cacciatori di mostri e guardie cittadine allo stesso tempo, agli ordini del sergente Alaric Ogden. Chi si arruola firma per tre anni; chi sopravvive al primo guadagna alla propria famiglia il diritto di vivere nel sicuro Distretto della Grande Cattedrale.</p>
+        </div>
+      </article>
+      <article class="lore__cell lore__cell--in reveal">
+        <h3>L'Incenso Consacrato</h3>
+        <p>I bastoncini consacrati dalla Chiesa emanano un odore che gli uomini quasi non sentono e che le bestie della Piaga trovano insopportabile.</p>
+      </article>
+      <article class="lore__cell lore__cell--ch reveal">
+        <img class="lore__symbol" src="assets/img/innarda.webp" alt="L'Innarda, il simbolo della Chiesa Radiosa: ferro annerito e oro, un anello sopra una croce con quattro bracci uncinati." width="380" height="705" loading="lazy" decoding="async">
+        <h3>La Chiesa Radiosa</h3>
+        <p>Governa la città, consacra l'incenso, detta la legge. Chi comincia a cambiare va consegnato alla Milizia, che lo tiene in cella finché non si vede cosa ne esce.</p>
+      </article>
+      <article class="lore__cell lore__cell--re reveal">
+        <h3>I Reietti</h3>
+        <p>Parte degli abitanti del Distretto Rubino, il primo a essere colpito dalla Piaga e il primo a essere stato segregato.</p>
+      </article>
+      <article class="lore__cell lore__cell--sc reveal">
+        <h3>Gli Scions</h3>
+        <p>Scienziati senza fede. Hanno dato alla città l'elettricità e i manichini, servitori d'avorio e d'oro che la Chiesa guarda con sospetto.</p>
+      </article>
     </div>
   </section>
 
-  <section class="folio" id="recluta" aria-labelledby="recluta-titolo">
-    <h2 id="recluta-titolo" class="sidehead">Quello che ogni recluta sa</h2>
-    <div class="folio__body glossary">
-      <p><b>Luyarnha.</b> Una città antica e devota, chiusa dentro le sue mura da una quarantena.</p>
-      <p><b>La Piaga.</b> Una maledizione che trasforma le persone in bestie. Di notte le strade sono loro. Nessuno sa come si prende: c'è chi dice il morso, chi l'aria, chi la luna. Non tutti finiscono bestie: alcuni cambiano corpo e restano sé stessi.</p>
-      <p><b>L'Incenso Consacrato.</b> I bastoncini consacrati dalla Chiesa emanano un odore che gli uomini quasi non sentono e che le bestie della Piaga trovano insopportabile.</p>
-      <p><img class="wrap-left" src="assets/img/innarda.webp" alt="L'Innarda, il simbolo della Chiesa Radiosa: ferro annerito e oro, un anello sopra una croce con quattro bracci uncinati." width="380" height="705" loading="lazy" decoding="async"><b>La Chiesa Radiosa.</b> Governa la città, consacra l'incenso, detta la legge. Chi comincia a cambiare va consegnato alla Milizia, che lo tiene in cella finché non si vede cosa ne esce.</p>
-      <p><img class="wrap-right" src="assets/img/sergente-ogden.webp" alt="Il sergente Alaric Ogden: barba brizzolata, cappotto blu della Milizia, spada in una mano e pistola nell'altra." width="520" height="896" loading="lazy" decoding="async"><b>La Milizia.</b> Voi. Cacciatori di mostri e guardie cittadine allo stesso tempo, agli ordini del sergente Alaric Ogden. Chi si arruola firma per tre anni; chi sopravvive al primo guadagna alla propria famiglia il diritto di vivere nel sicuro Distretto della Grande Cattedrale.</p>
-      <p><b>I Reietti.</b> Parte degli abitanti del Distretto Rubino, il primo a essere colpito dalla Piaga e il primo a essere stato segregato.</p>
-      <p><b>Gli Scions.</b> Scienziati senza fede. Hanno dato alla città l'elettricità e i manichini, servitori d'avorio e d'oro che la Chiesa guarda con sospetto.</p>
-    </div>
-  </section>
-
-  <section class="muster" id="personaggi" aria-labelledby="personaggi-titolo">
-    <div class="folio">
-      <h2 id="personaggi-titolo" class="sidehead">I personaggi</h2>
-      <div class="folio__body">
+  <section class="cast" id="personaggi" aria-labelledby="personaggi-titolo">
+    <div class="wrap">
+      <div class="cast__head reveal">
+        <h2 id="personaggi-titolo" class="h2">I personaggi</h2>
         <p>Quattordici membri della pattuglia, uno per classe. Sceglietene uno e scrivetemi su WhatsApp <strong>una riga sul perché vi ha incuriosito</strong>. In caso di doppioni vale chi scrive prima.</p>
-        <p>Alcuni sono più <button type="button" class="inline-filter" data-filtro="immediati" aria-pressed="false">immediati da giocare</button>, altri hanno <button type="button" class="inline-filter" data-filtro="meccaniche" aria-pressed="false">più meccaniche da tenere a mente</button>: toccate le due definizioni per vederli. Toccate un personaggio per aprirne la scheda.</p>
+        <p class="muted">Alcuni sono più immediati da giocare, altri hanno più meccaniche da tenere a mente: usate il filtro. Toccate un personaggio per aprirne la scheda.</p>
+        <p class="cast__custom">Chi ha esperienza può modificare il proprio personaggio: punteggi con il point buy e qualunque opzione del <a href="https://rotw-companion.pages.dev" target="_blank" rel="noopener">Compendio della campagna</a>, la webapp con le regole di <em>Rise of the Wretched</em>. Per entrarci serve un'autorizzazione: insieme alla scelta del personaggio, mandatemi l'email con cui volete accedere.</p>
       </div>
-    </div>
 
-    <div class="rank-wrap" data-filtro="tutti">
+      <div class="filter reveal" role="group" aria-label="Filtra i personaggi">
+        <button type="button" class="filter__btn" data-filtro="tutti" aria-pressed="true">Tutti</button>
+        <button type="button" class="filter__btn" data-filtro="immediati" aria-pressed="false">Immediati</button>
+        <button type="button" class="filter__btn" data-filtro="meccaniche" aria-pressed="false">Più meccaniche</button>
+      </div>
+      <p class="sr-only" aria-live="polite" id="filtro-stato"></p>
+
+      <!-- Al computer: la pattuglia schierata -->
+      <div class="rank-wrap reveal" data-filtro="tutti">
       <ul class="rank rank--rear" role="list">
         <li><button type="button" class="fig" data-scheda="oswin" data-gruppo="meccaniche"><img src="assets/img/schiera/oswin.webp" alt="" width="348" height="560" loading="lazy" decoding="async"><span class="fig__cap"><span class="fig__name">Oswin Tarrant</span> <span class="fig__class">Artefice, orco</span> <span class="fig__line">Meccanico cresciuto nelle officine delle miniere. Rimette in funzione ciò che si rompe</span></span></button></li>
         <li><button type="button" class="fig" data-scheda="ghira" data-gruppo="immediati"><img src="assets/img/schiera/ghira.webp" alt="" width="334" height="560" loading="lazy" decoding="async"><span class="fig__cap"><span class="fig__name">Ghira Dolmen</span> <span class="fig__class">Barbaro, orca</span> <span class="fig__line">Trovata un mese fa davanti al cordone, senza memoria e senza nome</span></span></button></li>
@@ -123,66 +159,199 @@
     </div>
     <p class="muster__caption" aria-hidden="true"><span class="fig__name">Quattordici reclute</span> <span class="fig__class">la pattuglia al completo</span></p>
 
-    <div class="folio">
-      <div class="folio__body">
-        <p>Chi ha esperienza può modificare il proprio personaggio: punteggi con il point buy e qualunque opzione del <a href="https://rotw-companion.pages.dev" target="_blank" rel="noopener">Compendio della campagna</a>, la webapp con le regole di <em>Rise of the Wretched</em>. Per entrarci serve un'autorizzazione: insieme alla scelta del personaggio, mandatemi l'email con cui volete accedere.</p>
-        <p>Riceverete la scheda completa prima della serata. Ogni scheda contiene tre cose oltre ai numeri:</p>
-        <p class="item"><b>Chi siete,</b> in poche righe. Il resto del personaggio è una vostra scelta.</p>
-        <p class="item"><b>Una domanda di legame</b> che riguarda un altro membro della pattuglia. Risponderete ad alta voce all'inizio della sessione: pensateci prima, ma decidete al tavolo, quando saprete chi sono i vostri compagni.</p>
-        <p class="item"><b>Un segreto, in busta chiusa.</b> È vostro: potete rivelarlo quando volete, a chi volete, oppure mai. Non esiste né un modo giusto di usarlo, né un momento perfetto per svelarlo.</p>
+      <!-- Al telefono: le carte -->
+
+      <ul class="cast__grid" role="list">
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/oswin.webp" alt="Oswin Tarrant" width="520" height="785" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Artefice, orco</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="oswin" aria-haspopup="dialog">Oswin Tarrant</button></h3>
+            <p>Meccanico cresciuto nelle officine delle miniere. Rimette in funzione ciò che si rompe</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="immediati">
+          <div class="pc__art"><img src="assets/img/pregenerati/ghira.webp" alt="Ghira Dolmen" width="520" height="871" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Barbaro, orca</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="ghira" aria-haspopup="dialog">Ghira Dolmen</button></h3>
+            <p>Trovata un mese fa davanti al cordone, senza memoria e senza nome</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/lucan.webp" alt="Lucan Fenwick" width="520" height="890" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Bardo, umano</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="lucan" aria-haspopup="dialog">Lucan Fenwick</button></h3>
+            <p>Ex voce del coro della Cattedrale, scrivano, uno che si fa raccontare le cose</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/iveta.webp" alt="Sorella Iveta Lorne" width="520" height="1068" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Chierico, elfa</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="iveta" aria-haspopup="dialog">Sorella Iveta Lorne</button></h3>
+            <p>Guaritrice di pattuglia, con la mantellina bianca. Crede nella Chiesa Radiosa</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/sorrel.webp" alt="Sorrel Ashby" width="520" height="1058" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Druido, elfa</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="sorrel" aria-haspopup="dialog">Sorrel Ashby</button></h3>
+            <p>Erborista del bazar, prepara i decotti che tengono in piedi la squadra</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="immediati">
+          <div class="pc__art"><img src="assets/img/pregenerati/bran.webp" alt="Brannoch “Bran” Ostler" width="520" height="869" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Guerriero, umano</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="bran" aria-haspopup="dialog">Brannoch “Bran” Ostler</button></h3>
+            <p>Il più anziano di servizio, quello che firmerà il rapporto a fine missione</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/halvard.webp" alt="Halvard Pryce" width="520" height="964" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Jaeger, umano</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="halvard" aria-haspopup="dialog">Halvard Pryce</button></h3>
+            <p>Un Cacciatore novizio, stocco in una mano, pistola nell'altra</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="immediati">
+          <div class="pc__art"><img src="assets/img/pregenerati/kasimir.webp" alt="Kasimir Dray" width="520" height="910" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Ladro, umano</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="kasimir" aria-haspopup="dialog">Kasimir Dray</button></h3>
+            <p>Nato nel Distretto Rubino, uscito tre giorni prima che lo segregassero</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/emeric.webp" alt="Dottor Emeric Hallow" width="520" height="768" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Mago, nano</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="emeric" aria-haspopup="dialog">Dottor Emeric Hallow</button></h3>
+            <p>Medico di quartiere e anatomista. Prende appunti su tutto</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="immediati">
+          <div class="pc__art"><img src="assets/img/pregenerati/jory.webp" alt="Jory Tamm" width="520" height="653" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Monaco, umano</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="jory" aria-haspopup="dialog">Jory Tamm</button></h3>
+            <p>Ragazzo di strada cresciuto in una palestra di lottatori. Il più giovane, il più veloce</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="immediati">
+          <div class="pc__art"><img src="assets/img/pregenerati/aldith.webp" alt="Aldith Wren" width="520" height="1079" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Paladino, umana</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="aldith" aria-haspopup="dialog">Aldith Wren</button></h3>
+            <p>Addestrata nella House of Blood. Un baluardo di rettitudine</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/mina.webp" alt="Wilhelmina “Mina” Krauss" width="520" height="980" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Ranger, umana</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="mina" aria-haspopup="dialog">Wilhelmina “Mina” Krauss</button></h3>
+            <p>Tiratrice scelta. Riesce a rintracciare le bestie della Piaga prima di chiunque altro</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/nell.webp" alt="Nell Quist" width="520" height="1166" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Stregone, umana</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="nell" aria-haspopup="dialog">Nell Quist</button></h3>
+            <p>Apprendista orologiaia. Sa aggiustare qualsiasi cosa</p>
+          </div>
+        </li>
+        <li class="pc" data-gruppo="meccaniche">
+          <div class="pc__art"><img src="assets/img/pregenerati/isolde.webp" alt="Isolde Sedgwick" width="520" height="968" loading="lazy" decoding="async"></div>
+          <div class="pc__body">
+            <p class="pc__class">Warlock, elfa</p>
+            <h3 class="pc__name"><button type="button" class="pc__open" data-scheda="isolde" aria-haspopup="dialog">Isolde Sedgwick</button></h3>
+            <p>Vedova. Nelle notti peggiori è quella che non ha mai paura</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sheet reveal">
+        <p class="sheet__intro">Riceverete la scheda completa prima della serata. Ogni scheda contiene tre cose oltre ai numeri:</p>
+        <ol class="sheet__list">
+          <li><h3>Chi siete</h3><p>In poche righe. Il resto del personaggio è una vostra scelta.</p></li>
+          <li><h3>Una domanda di legame</h3><p>Riguarda un altro membro della pattuglia. Risponderete ad alta voce all'inizio della sessione: pensateci prima, ma decidete al tavolo, quando saprete chi sono i vostri compagni.</p></li>
+          <li class="sheet__secret"><h3>Un segreto, in busta chiusa</h3><p>È vostro: potete rivelarlo quando volete, a chi volete, oppure mai. Non esiste né un modo giusto di usarlo, né un momento perfetto per svelarlo.</p></li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <section class="folio" id="regole" aria-labelledby="regole-titolo">
-    <h2 id="regole-titolo" class="sidehead">Regole della serata</h2>
-    <div class="folio__body">
-      <p>Giocheremo con le stesse regole della campagna.</p>
-      <h3>Follia</h3>
-      <p>Certe cose che vedrete o sentirete richiederanno un tiro salvezza. Chi fallisce subisce una <em>follia a breve termine</em>: resta stordito per un istante, poi per qualche ora il personaggio si comporta in un modo che non ha scelto, rimanendo sotto il vostro controllo. Fa parte del gioco, e interpretarla è metà del divertimento.</p>
-      <h3>Riposi</h3>
-      <p>Il riposo breve dura 10 minuti, ma solo i primi due della serata ricaricano le capacità. Il riposo lungo richiede un luogo sicuro, e stanotte non ne avrete uno. Le risorse che avete all'inizio sono quelle con cui arriverete all'alba.</p>
-      <h3>Armi da fuoco</h3>
-      <p>Rumorose, potenti e lente da ricaricare. Chi ne ha una troverà sulla scheda quanti colpi tiene la canna e cosa serve per ricaricarla. Uno sparo si sente a distanza: non passerete inosservati.</p>
-      <h3>Dadi in chiaro</h3>
-      <p>Tiriamo davanti a tutti e non correggiamo i risultati. Nel caso in cui un personaggio muoia, continuerete a giocare con un altro personaggio: non resterete mai a guardare per troppo tempo.</p>
+  <section class="rules wrap" id="regole" aria-labelledby="regole-titolo">
+    <div class="rules__head reveal">
+      <h2 id="regole-titolo" class="h2">Regole della serata</h2>
+      <p class="muted">Giocheremo con le stesse regole della campagna.</p>
+    </div>
+    <div class="rules__grid">
+      <article class="rule rule--wide reveal">
+        <h3>Follia</h3>
+        <p>Certe cose che vedrete o sentirete richiederanno un tiro salvezza. Chi fallisce subisce una <em>follia a breve termine</em>: resta stordito per un istante, poi per qualche ora il personaggio si comporta in un modo che non ha scelto, rimanendo sotto il vostro controllo. Fa parte del gioco, e interpretarla è metà del divertimento.</p>
+      </article>
+      <article class="rule reveal">
+        <h3>Riposi</h3>
+        <p>Il riposo breve dura 10 minuti, ma solo i primi due della serata ricaricano le capacità. Il riposo lungo richiede un luogo sicuro, e stanotte non ne avrete uno. Le risorse che avete all'inizio sono quelle con cui arriverete all'alba.</p>
+      </article>
+      <article class="rule reveal">
+        <h3>Armi da fuoco</h3>
+        <p>Rumorose, potenti e lente da ricaricare. Chi ne ha una troverà sulla scheda quanti colpi tiene la canna e cosa serve per ricaricarla. Uno sparo si sente a distanza: non passerete inosservati.</p>
+      </article>
+      <article class="rule rule--wide reveal">
+        <h3>Dadi in chiaro</h3>
+        <p>Tiriamo davanti a tutti e non correggiamo i risultati. Nel caso in cui un personaggio muoia, continuerete a giocare con un altro personaggio: non resterete mai a guardare per troppo tempo.</p>
+      </article>
     </div>
   </section>
 
-  <section class="folio" aria-labelledby="chiedo-titolo">
-    <h2 id="chiedo-titolo" class="sidehead">Cosa vi chiedo</h2>
-    <div class="folio__body">
-      <p class="item"><b>Puntualità,</b> e la scheda letta prima di sedervi.</p>
-      <p class="item"><b>Qualche nota.</b> A Luyarnha l'informazione vale più dell'oro. Prendere appunti può essere utile: alcuni nomi, frasi e dettagli che incontrerete potrebbero tornare importanti in scene più avanti.</p>
-      <p class="item"><b>Telefoni.</b> Durante la partita, se e quando possibile, evitiamoli.</p>
-      <p class="item"><b>Spazio per gli altri.</b> Siete una pattuglia: le scene migliori sono quelle che passate a un compagno.</p>
-      <p class="item"><b>Personaggi che stanno nel gruppo.</b> I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</p>
+  <section class="asks wrap" aria-label="Cosa vi chiedo e cosa portare">
+    <div class="asks__col reveal">
+      <h2 class="h2">Cosa vi chiedo</h2>
+      <ul class="asks__list">
+        <li><strong>Puntualità,</strong> e la scheda letta prima di sedervi.</li>
+        <li><strong>Qualche nota.</strong> A Luyarnha l'informazione vale più dell'oro. Prendere appunti può essere utile: alcuni nomi, frasi e dettagli che incontrerete potrebbero tornare importanti in scene più avanti.</li>
+        <li><strong>Telefoni.</strong> Durante la partita, se e quando possibile, evitiamoli.</li>
+        <li><strong>Spazio per gli altri.</strong> Siete una pattuglia: le scene migliori sono quelle che passate a un compagno.</li>
+        <li><strong>Personaggi che stanno nel gruppo.</strong> I segreti servono a rendere le scelte dei personaggi più difficili e meno ovvie, non a mettere un giocatore contro l'altro.</li>
+      </ul>
+    </div>
+    <div class="asks__col asks__col--kit reveal">
+      <h2 class="h2">Cosa portare</h2>
+      <ul class="kit">
+        <li>Dadi, penna, un taccuino</li>
+        <li>La scheda del personaggio, letta</li>
+        <li>Una bozza di risposta alla vostra domanda di legame</li>
+      </ul>
     </div>
   </section>
 
-  <section class="folio" aria-labelledby="portare-titolo">
-    <h2 id="portare-titolo" class="sidehead">Cosa portare</h2>
-    <div class="folio__body">
-      <p>Dadi, penna, un taccuino; la scheda del personaggio, letta; una bozza di risposta alla vostra domanda di legame.</p>
-    </div>
-  </section>
-
-  <section class="folio" id="sicurezza" aria-labelledby="sicurezza-titolo">
-    <h2 id="sicurezza-titolo" class="sidehead">Contenuti e sicurezza</h2>
-    <div class="folio__body">
+  <section class="safety wrap" id="sicurezza" aria-labelledby="sicurezza-titolo">
+    <div class="safety__inner reveal">
+      <h2 id="sicurezza-titolo" class="h2">Contenuti e sicurezza</h2>
       <p>La serata tocca questi temi sensibili: <strong>contagio e trasformazione del corpo, minacce di linciaggio, allusioni al suicidio, effetti psicologici dovuti al lutto, violenza su civili, bambini in pericolo, sangue e morte</strong>.</p>
       <p>Se uno di questi argomenti è per voi un limite, o se ce n'è un altro che preferite non incontrare, scrivetemelo in privato prima della serata senza spiegare il perché. Dalle vostre risposte ricaverò cosa resta fuori dal gioco (<em>linee</em>) e cosa accade ma non viene descritto (<em>veli</em>), e ve lo dirò all'inizio della sessione, senza fare nomi. Ci daremo anche un segnale con cui chiunque può fermare una scena in qualsiasi momento, senza dover dare spiegazioni.</p>
     </div>
   </section>
 
   <section class="motto" aria-label="Il motto della Milizia">
-    <p class="motto__lead">E ricordate il motto della Milizia:</p>
-    <p class="motto__text">Sopravvivere assieme<br>o morire assieme.</p>
+    <div class="motto__glow" aria-hidden="true"></div>
+    <div class="wrap reveal">
+      <p class="motto__lead">E ricordate il motto della Milizia:</p>
+      <p class="motto__text">Sopravvivere assieme<br>o morire assieme.</p>
+    </div>
   </section>
 
 </main>
 
-<footer class="colophon">
+<footer class="footer wrap">
   <p><em>Cenere e Tiglio</em>, one-shot per <em>Rise of the Wretched</em>. Ambientazione: <em>Steinhardt's Guide to the Eldritch Hunt</em>.</p>
 </footer>
 
