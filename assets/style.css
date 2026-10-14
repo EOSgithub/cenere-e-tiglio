@@ -462,7 +462,6 @@ p, li, dd { text-wrap: pretty; }
 }
 .motto__cta:hover { color: var(--text); border-color: var(--text-2); }
 
-.footer { padding-block: 2rem 3rem; color: var(--muted); font-size: .98rem; }
 
 /* Movimento: solo se l'utente non ha chiesto di ridurlo */
 @media (prefers-reduced-motion: no-preference) {
