@@ -63,7 +63,7 @@
     const img = btn.closest('.pc').querySelector('img');
     art.src = img.currentSrc || img.src;
     art.alt = img.alt;
-    art.width = img.width; art.height = img.height;
+    art.width = img.naturalWidth || img.width; art.height = img.naturalHeight || img.height;
     body.scrollTop = 0; frame.scrollTop = 0;
     history.replaceState(null, '', `#scheda-${slug}`);
   }
