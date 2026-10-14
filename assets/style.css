@@ -424,6 +424,7 @@ p, li, dd { text-wrap: pretty; }
 .asks { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3.5rem, 7vw, 6rem); }
 .asks__list { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
 .asks__list li { color: var(--text-2); margin-bottom: 1.25rem; break-inside: avoid; }
+.asks__list li:last-child { margin-bottom: 0; }
 @media (min-width: 961px) {
   .asks__list { max-width: none; column-count: 2; column-gap: clamp(2.5rem, 5vw, 4.5rem); column-rule: 1px solid var(--line); }
 }
@@ -433,6 +434,16 @@ p, li, dd { text-wrap: pretty; }
 .safety__inner { max-width: 46rem; }
 @media (min-width: 961px) { .safety__inner.duo { max-width: none; } }
 .safety__inner p { color: var(--text-2); }
+
+/* Separatore tra le sezioni senza illustrazione: l'Innarda, con i filetti che si scaldano vicino al simbolo */
+.sep { display: flex; align-items: center; justify-content: center; gap: 1.1rem; padding-inline: var(--gutter); }
+/* Lo spazio lo decide il separatore: uguale sopra e sotto, qualunque sezione abbia accanto */
+section:has(+ .sep) { padding-bottom: clamp(3rem, 6vw, 4.5rem); }
+.sep + section { padding-top: clamp(3rem, 6vw, 4.5rem); }
+.sep img { height: 3.6rem; width: auto; flex: none; }
+.sep::before, .sep::after { content: ""; height: 1px; width: min(16rem, 28vw); }
+.sep::before { background: linear-gradient(to left, rgb(217 165 78 / .75), var(--line) 45%, transparent); }
+.sep::after { background: linear-gradient(to right, rgb(217 165 78 / .75), var(--line) 45%, transparent); }
 
 /* Motto: l'immagine sfuma da sé, senza filetto */
 .motto { position: relative; isolation: isolate; overflow: hidden; text-align: center; padding-block: clamp(6rem, 14vw, 10rem); }
