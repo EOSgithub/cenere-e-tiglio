@@ -206,7 +206,7 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
 }
 
 /* Cosa sa una recluta: griglia a sette celle */
-.lore { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.lore { padding-block: clamp(4.5rem, 9vw, 7.5rem); }
 .lore__grid {
   display: grid; gap: 1px;
   background: var(--line);
@@ -224,28 +224,34 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
 .lore__cell--in { grid-area: in; }
 .lore__cell--re { grid-area: re; }
 .lore__cell--sc { grid-area: sc; }
-/* Ogden e l'Innarda stanno sopra il testo, non dietro: la sfumatura chiude la figura prima del titolo */
 .lore__cell--mi {
   grid-area: mi;
   display: flex; flex-direction: column; justify-content: flex-end;
   background: radial-gradient(90% 60% at 50% 30%, #2a231e 0%, var(--bg) 75%);
-  overflow: hidden;
+  overflow: hidden; min-height: 34rem;
 }
 .lore__ogden {
-  width: auto; height: clamp(15rem, 22vw, 19rem); max-width: 100%;
-  margin: 0 auto 1.25rem;
-  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 98%);
-          mask-image: linear-gradient(to bottom, #000 62%, transparent 98%);
+  position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%);
+  width: 72%; max-width: 19rem; height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 38%, transparent 72%);
+          mask-image: linear-gradient(to bottom, #000 38%, transparent 72%);
 }
+.lore__mi-text { position: relative; }
 .lore__cell--mi h3 { font-size: 1.85rem; }
 .lore__cell--ch {
   grid-area: ch;
   display: flex; flex-direction: column; justify-content: flex-end;
   background: linear-gradient(to bottom, var(--bg-2), var(--bg));
+  overflow: hidden; min-height: 26rem;
 }
 .lore__symbol {
-  width: auto; height: clamp(9rem, 14vw, 12rem); max-width: 100%;
-  margin: 0 auto 1.5rem; opacity: .9;
+  position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%);
+  width: 9.5rem; height: auto; opacity: .9;
+}
+.lore__cell--ch h3, .lore__cell--ch p { position: relative; }
+.lore__cell--ch::before {
+  content: ""; position: absolute; inset: auto 0 0; height: 70%;
+  background: linear-gradient(to top, var(--bg) 35%, transparent);
 }
 @media (max-width: 960px) {
   .lore__grid {
@@ -255,6 +261,8 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
 }
 @media (max-width: 640px) {
   .lore__grid { grid-template-columns: 1fr; grid-template-areas: "lu" "pi" "mi" "in" "ch" "re" "sc"; }
+  .lore__cell--mi { min-height: 30rem; }
+  .lore__cell--ch { min-height: 24rem; }
 }
 
 /* Personaggi */
