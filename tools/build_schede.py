@@ -11,7 +11,7 @@ import json
 import re
 from pathlib import Path
 
-NOTA = Path(r"C:\Obsidian\Eldritch-Hunt\One Shots\Cenere e Tiglio - Personaggi.md")
+NOTA = Path(r"C:\Obsidian\Eldritch Hunt\One Shots\Cenere e Tiglio - Personaggi.md")
 OUT = Path(__file__).resolve().parent.parent / "assets" / "schede.js"
 
 SLUG = {

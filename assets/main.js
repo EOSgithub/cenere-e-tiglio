@@ -24,6 +24,15 @@
     nav.classList.add('is-on');
   }
 
+  // Stessa condizione del CSS: la schiera c'è solo con il mouse
+  const desk = window.matchMedia('(min-width: 761px) and (hover: hover) and (pointer: fine)');
+  const setVerbi = () => document.querySelectorAll('[data-verbo]').forEach(s => {
+    const v = desk.matches ? 'cliccate' : 'toccate';
+    s.textContent = s.textContent[0] === s.textContent[0].toUpperCase() ? v[0].toUpperCase() + v.slice(1) : v;
+  });
+  setVerbi();
+  desk.addEventListener('change', setVerbi);
+
   // Filtro: le due definizioni nella frase accendono un gruppo; toccata di nuovo, la stessa lo spegne.
   // Al telefono nasconde le carte, al computer spegne le figure escluse.
   const wrap = document.querySelector('.rank-wrap');
@@ -47,12 +56,20 @@
       }
     });
     if (status) status.textContent = `${n} personaggi`;
+    restCaption = restFor(filtro, n);
+    if (!lit) resetCaption();
   }));
 
   // La pattuglia schierata (solo al computer)
   const figs = [...document.querySelectorAll('.fig')];
   const caption = document.querySelector('.muster__caption');
-  const restCaption = caption ? caption.innerHTML : '';
+  const fullCaption = caption ? caption.innerHTML : '';
+  const NUMERI = ['', 'Una', 'Due', 'Tre', 'Quattro', 'Cinque', 'Sei', 'Sette', 'Otto', 'Nove', 'Dieci', 'Undici', 'Dodici', 'Tredici'];
+  const GRUPPI = { immediati: 'immediate da giocare', meccaniche: 'con più meccaniche da tenere a mente' };
+  // A riposo la didascalia dice quante reclute sono accese
+  const restFor = (f, n) => f === 'tutti' ? fullCaption
+    : `<span class="fig__name">${NUMERI[n]} ${n === 1 ? 'recluta' : 'reclute'}</span> <span class="fig__class">${GRUPPI[f]}</span>`;
+  let restCaption = fullCaption;
   const showCaption = fig => { if (caption) caption.innerHTML = fig.querySelector('.fig__cap').innerHTML; };
   const resetCaption = () => { if (caption) caption.innerHTML = restCaption; };
   figs.forEach(f => {
@@ -62,7 +79,6 @@
 
   // Le figure si sovrappongono: il mouse deve prendere solo i pixel visibili.
   // Per ogni ritratto si tiene una maschera ridotta del canale alfa, letta una volta sola.
-  const desk = window.matchMedia('(min-width: 761px)');
   const masks = new Map();
   const SCALE = 4;
   function buildMask(fig) {

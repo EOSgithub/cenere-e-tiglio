@@ -124,7 +124,7 @@
       <div class="cast__head">
         <h2 id="personaggi-titolo" class="h2">I personaggi</h2>
         <p>Quattordici membri della pattuglia, uno per classe. Sceglietene uno e scrivetemi su WhatsApp <strong>una riga sul perché vi ha incuriosito</strong>. In caso di doppioni vale chi scrive prima.</p>
-        <p class="muted">Alcuni sono più <button type="button" class="inline-filter" data-filtro="immediati" aria-pressed="false">immediati da giocare</button>, altri hanno <button type="button" class="inline-filter" data-filtro="meccaniche" aria-pressed="false">più meccaniche da tenere a mente</button>: toccate le due definizioni per vederli. Toccate un personaggio per aprirne la scheda.</p>
+        <p class="cast__filter">Alcuni sono più <button type="button" class="inline-filter" data-filtro="immediati" aria-pressed="false">immediati da giocare</button>, altri hanno <button type="button" class="inline-filter" data-filtro="meccaniche" aria-pressed="false">più meccaniche da tenere a mente</button>: <span data-verbo>toccate</span> le due definizioni per vederli. <span data-verbo>Toccate</span> un personaggio per aprirne la scheda.</p>
         <p class="cast__custom">Chi ha esperienza può modificare il proprio personaggio: punteggi con il point buy e qualunque opzione del <a href="https://rotw-companion.pages.dev" target="_blank" rel="noopener">Compendio della campagna</a>, la webapp con le regole di <em>Rise of the Wretched</em>. Per entrarci serve un'autorizzazione: insieme alla scelta del personaggio, mandatemi l'email con cui volete accedere.</p>
       </div>
       <p class="sr-only" aria-live="polite" id="filtro-stato"></p>
@@ -339,6 +339,7 @@
     <div class="wrap">
       <p class="motto__lead">E ricordate il motto della Milizia:</p>
       <p class="motto__text">Sopravvivere assieme<br>o morire assieme.</p>
+      <p><a class="motto__cta" href="#personaggi">Scegliete la vostra recluta</a></p>
     </div>
   </section>
 
@@ -353,9 +354,11 @@
     <div class="sk__art"><img src="" alt="" width="520" height="1000"></div>
     <article class="sk__body" tabindex="-1"></article>
     <nav class="sk__nav" aria-label="Scheda">
-      <button type="button" data-sk="prev">precedente</button>
-      <button type="button" data-sk="next">successivo</button>
-      <button type="button" data-sk="close">chiudi</button>
+      <div class="sk__step">
+        <button type="button" data-sk="prev">precedente</button>
+        <button type="button" data-sk="next">successivo</button>
+      </div>
+      <button type="button" class="sk__close" data-sk="close">chiudi</button>
     </nav>
   </div>
 </dialog>
