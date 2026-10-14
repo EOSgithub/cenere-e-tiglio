@@ -66,6 +66,9 @@ p:last-child { margin-bottom: 0; }
   color: var(--text);
 }
 h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
+/* A capo: titoli bilanciati, paragrafi senza una parola sola sull'ultima riga */
+h1, h2, h3, .sheet__intro, .premise__dread, .motto__text, .orders__title { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
@@ -218,7 +221,7 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
     "re ch sc";
 }
 .lore__cell { background: var(--bg); padding: clamp(1.5rem, 2.6vw, 2.25rem); position: relative; }
-.lore__cell p { color: var(--text-2); font-size: 1.1rem; }
+.lore__cell p { color: var(--text-2); font-size: 1.1rem; max-width: 40rem; }
 .lore__cell--lu { grid-area: lu; }
 .lore__cell--pi { grid-area: pi; }
 .lore__cell--in { grid-area: in; }
@@ -254,7 +257,8 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
   content: ""; position: absolute; z-index: 1; inset: auto 0 0; height: 65%;
   background: linear-gradient(to top, rgb(18 17 17 / .92) 30%, transparent);
 }
-@media (max-width: 960px) {
+/* Tre colonne solo da 1200 px: sotto, le celle scendevano a 25 caratteri per riga */
+@media (max-width: 1200px) {
   .lore__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas: "mi lu" "mi pi" "ch in" "ch re" "sc sc";
@@ -271,8 +275,17 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
   padding-block: clamp(3.5rem, 7vw, 6rem);
   background: linear-gradient(to bottom, var(--bg), var(--bg-2) 20%, var(--bg-2) 80%, var(--bg));
 }
-.cast__head { max-width: 46rem; margin-bottom: 2rem; }
-.cast__head p { font-size: 1.15rem; }
+.cast__head { margin-bottom: 2rem; }
+.cast__head p { font-size: 1.15rem; max-width: 46rem; }
+/* A schermo largo i testi lunghi vanno su due colonne col filetto, come le regole: tutta la larghezza, righe leggibili */
+.duo { --gap: clamp(2.5rem, 5vw, 4.5rem); }
+@media (min-width: 961px) {
+  .duo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--gap); align-items: start; }
+  .duo > .h2 { grid-column: 1 / -1; }
+  .duo > .duo__right { grid-column: 2; grid-row: 2 / span 9; position: relative; }
+  .duo > .duo__right::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--gap) / -2); border-left: 1px solid var(--line); }
+  .duo > p { max-width: none; }
+}
 .cast__custom { color: var(--text-2); }
 .cast__custom a { color: var(--accent); text-underline-offset: .2em; text-decoration-thickness: 1px; }
 .cast__custom a:hover { color: var(--text); }
@@ -292,8 +305,7 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
   display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap);
 }
 @media (max-width: 1000px) { .cast__grid { --cols: 3; } }
-@media (max-width: 700px)  { .cast__grid { --cols: 2; --gap: .75rem; } }
-.pc {
+@media (max-width: 700px)  { .cast__grid { --cols: 2; --gap: .75rem; } }.pc {
   flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
   min-width: 0;
   position: relative;
@@ -340,6 +352,14 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
   .pc__name { font-size: 1.2rem; }
   .pc__body p:last-child { font-size: .95rem; }
 }
+/* Telefoni stretti: una carta per riga, busto a sinistra e testo a destra, così i nomi non si spezzano */
+@media (max-width: 374px) {
+  .cast__grid { --cols: 1; }
+  .pc { flex-direction: row; align-items: center; }
+  .pc__art { flex: 0 0 38%; align-self: stretch; aspect-ratio: auto; min-height: 8.5rem; }
+  .pc__art::after { display: none; }
+  .pc__body { padding: .8rem .9rem; }
+}
 @media (hover: hover) {
   .pc:hover { border-color: rgb(217 165 78 / .45); }
   .pc:hover .pc__art img { filter: brightness(1.02) saturate(1); }
@@ -385,7 +405,7 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
   border-top: 1px solid var(--line);
   padding-top: clamp(2.5rem, 5vw, 3.5rem);
 }
-.sheet__intro { font: 400 clamp(1.5rem, 1.2rem + 1vw, 2.1rem)/1.3 var(--display); color: var(--text); }
+.sheet__intro { font: 400 clamp(1.4rem, .9rem + 1.1vw, 2rem)/1.3 var(--display); color: var(--text); }
 .sheet__list p { color: var(--text-2); margin-bottom: 1.1em; }
 .sheet__list b, .asks__list strong { font: 400 1.1em/1 var(--display-sc); color: var(--accent); letter-spacing: .01em; }
 @media (max-width: 860px) { .sheet { grid-template-columns: 1fr; } }
@@ -398,7 +418,7 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
 .rule { break-inside: avoid; margin-bottom: 2rem; }
 .rule h3 { font-size: 1.6rem; }
 .rule p { color: var(--text-2); }
-@media (max-width: 860px) { .rules__cols { column-count: 1; } }
+@media (max-width: 860px) { .rules__cols { column-count: 1; max-width: 40rem; } }
 
 /* Cosa vi chiedo, cosa portare */
 .asks {
@@ -422,6 +442,7 @@ h3 { font: 400 1.5rem/1.15 var(--display); margin: 0 0 .45em; }
 /* Contenuti e sicurezza: sullo stesso filo sinistro del resto */
 .safety { padding-block: 0 clamp(4rem, 8vw, 6.5rem); }
 .safety__inner { max-width: 46rem; }
+@media (min-width: 961px) { .safety__inner.duo { max-width: none; } }
 .safety__inner p { color: var(--text-2); }
 
 /* Motto: l'immagine sfuma da sé, senza filetto */
